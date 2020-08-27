@@ -1,23 +1,25 @@
 import React from 'react'
-import {addDecorator} from '@storybook/react'
+// import {addDecorator} from '@storybook/react'
+// import {withKnobs} from '@storybook/addon-knobs'
 
-import {createGlobalStyle, ThemeProvider} from 'styled-components';
+// import {createGlobalStyle, ThemeProvider} from 'styled-components';
 
-const themeDefault={
-  primary:'white'
-}
+// const themeDefault={
+//   primary:'white'
+// }
 
-const GlobalStyles = createGlobalStyle`
-  body{
-    background-color:${props => props.theme.primary}
-  }
-`;
+// const GlobalStyles = createGlobalStyle`
+//   body{
+//     background-color:${props => props.theme.primary}
+//   }
+// `;
 
-const GlobalWrapper = storyFn =>(
-  <ThemeProvider theme={themeDefault}>
-  <GlobalStyles />
-      {storyFn()}
-  </ThemeProvider>
-);
+// const GlobalWrapper = storyFn =>(
+//   <ThemeProvider theme={themeDefault}>
+//   <GlobalStyles />
+//       {storyFn()}
+//   </ThemeProvider>
+// );
 
-addDecorator(GlobalWrapper);
+// addDecorator(GlobalWrapper);
+// addDecorator(withKnobs);
