@@ -14,6 +14,6 @@ export const secondary = () =><Button variant="contained" color="secondary">Seco
 export const disabled = () =><Button variant="contained" disabled>Disabled</Button>
 
 //just for testing
-export const withAButton = () => (
+export const Knobs = () => (
     <button disabled={boolean('Disabled', false)}>{text('Label', 'Hello Storybook')}</button>
   );
