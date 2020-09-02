@@ -7,17 +7,20 @@ const StyledAvatar = styled.div`
     width: 24px;
     height: 24px;
     background-color:lightgray;
+    padding:5px;
   }
   .display {
     width: 36px;
     height: 36px;
     background-color:lightgray;
+    padding:5px;
   };
 
 .large {
     width: 56px;
     height: 56px;
     background-color:lightgray;
+    padding:5px;
   };
 
 `;

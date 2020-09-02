@@ -12,7 +12,8 @@ const handleClick = () => {
 function App() {
   return (
     <div className="App">
-      <CardHeader />
+      <Header />
+      {/* <CardHeader /> */}
       {/* <Card />
       <Header />
       <Button onClick={handleClick} variant="contained" color="primary">My Button</Button>
@@ -23,3 +24,22 @@ function App() {
 }
 
 export default App;
+
+
+/*
+                                {
+                                    'title':'This is the title',
+                                    'subHeader':'September 2 2020',
+                                    'avatarText':'D',
+                                    'responseCount':'12',
+                                    'clapCount':'14',
+                                    'cardContentVariant':'body2',
+                                    'content':'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
+                                    'color':'textSecondary',
+                                    'cardImage':card1
+
+
+                                }
+
+
+*/

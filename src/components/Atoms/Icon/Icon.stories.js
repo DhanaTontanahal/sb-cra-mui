@@ -1,11 +1,10 @@
 import React from 'react'
 import Icon from "./Icon"
+import { select} from '@storybook/addon-knobs';
 
 export default {
     title: 'Atoms/Icon',
     component: Icon
 }
 
-export const MenuIcon = () =><Icon iconType="menu"></Icon>;
-export const NotifnIcon = () =><Icon iconType="notification"></Icon>;
-export const SearchIcon = () =><Icon iconType="search"></Icon>;
+export const DynamicIcon = () =><Icon iconType={select('Icons',['menu', 'notification','search','moreVert','clapsIcon','cardSaveIcon'], 'menu', 'Select')}></Icon>;

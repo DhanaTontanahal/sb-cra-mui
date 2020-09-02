@@ -7,7 +7,14 @@ export default {
     component: Typography
 }
 
-export const Typography1 = () => <Typography gutterBottom={true} color={select('Select', ['initial', 'inherit', 'primary', 'secondary', 'error', 'primary'],'primary','Select')} variant="h1">{text('Label', 'H1 text')}</Typography>
-export const Typography2 = () => <Typography variant="h2">{text('Label', 'H2 text')}</Typography>
-export const Typography3 = () => <Typography variant="h3">{text('Label', 'H3 text')}</Typography>
+export const Typography1 = () => <Typography
+    gutterBottom={true}
+    color={select('Color', ['initial', 'inherit', 'primary', 'secondary', 'error', 'primary'], 'primary', 'Select')}
+    variant={select('Variant', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'caption', 'button', 'overline', 'srOnly', 'inherit'], 'subtitle1', 'Select')}
+    align={select('Align', ['inherit', 'left', 'center', 'right', 'justify'], 'center', 'Select')}
+    display={select('Display', ['initial', 'block', 'inline'], 'block', 'Select')}
+    noWrap={boolean('NoWrap', true)}
+>{text('Label', 'H1 text')}
+
+</Typography>
 

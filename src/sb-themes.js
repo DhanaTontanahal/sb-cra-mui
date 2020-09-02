@@ -7,6 +7,12 @@ const theme = createMuiTheme({
       primary: purple,
       secondary: green,
     },
+    typography:{
+      fontFamily:'Arial',
+      h1:{
+        fontSize:'5rem'
+      }
+    }
   });
 
   export default theme;
