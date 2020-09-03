@@ -12,18 +12,25 @@ import { red } from '@material-ui/core/colors';
 import styled from 'styled-components'
 
 const StyledTypo = styled.div`
-  margin-left:90px;
+  margin-left:370px;
 `;
 
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 600,
+    marginBottom: 12,
+    marginLeft: '30%',
+    // backgroundColor:'#F0F8FF',
+    backgroundColor: '#FFFFFF',
+    boxShadow: '0.5px 0.5px black',
+    opacity: 10
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+    opacity: 50
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -50,9 +57,11 @@ export default function RecipeReviewCard(props) {
 
   return (
     <Card className={classes.root}>
+    
       <CardHeader
+        avatarImg={props.cardImage}
         title={props.cardHeaderTitle}
-        subheader={props.cardHeaderSubheader}
+        subheader={props.subHeader}
         avatarString={props.cardHeaderAvatarString}
         iconType='moreVert'>
       </CardHeader>
@@ -62,6 +71,11 @@ export default function RecipeReviewCard(props) {
         title="Cardmedia"
       />
       <CardContent>
+
+        <Typography variant="h4" component="p">
+          {props.cardContentHeading}
+        </Typography>
+
         <Typography variant={props.cardContentVariant} color={props.cardContentColor} component="p">
           {props.cardContent}
         </Typography>

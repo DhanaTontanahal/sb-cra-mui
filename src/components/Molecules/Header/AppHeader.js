@@ -34,7 +34,7 @@ export default function ButtonAppBar() {
     <AppBar color="default" position="static">
       <Toolbar>
 
-        <Typography variant="h6" className={classes.title}>
+        <Typography variant="h5" className={classes.title}>
           Medium Blog
        </Typography>
 
@@ -53,7 +53,7 @@ export default function ButtonAppBar() {
           variant='circle'
           size='small'
           aria-label='U'
-          style={{marginLeft:'4px'}}
+          style={{marginLeft:'16px'}}
         >
         </Avatar>
 

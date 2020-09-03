@@ -35,8 +35,8 @@ export default function CardHeaderHook(props) {
   const { children, ...rest } = props;
   return <CardHeader
     avatar={
-      <Avatar aria-label="recipe" className={classes.avatar}>
-        {props.avatarString}
+      <Avatar src={props.avatarImg} aria-label="recipe" className={classes.avatar}>
+        
       </Avatar>
     }
     action={
@@ -45,7 +45,7 @@ export default function CardHeaderHook(props) {
       </IconButton>
     }
     title={
-      <Typography variant="subtitle1">{props.title}</Typography>
+      <Typography color="inherit" variant="subtitle1">{props.title}</Typography>
     }
     subheader={props.subheader}
   />
