@@ -7,4 +7,4 @@ export default {
     component: Icon
 }
 
-export const DynamicIcon = () =><Icon iconType={select('Icons',['menu', 'notification','search','moreVert','clapsIcon','cardSaveIcon'], 'menu', 'Select')}></Icon>;
+export const DynamicIcon = () =><Icon iconType={select('Icons',['menu', 'notification','search','moreVert'], 'menu', 'Select')}></Icon>;

@@ -11,7 +11,7 @@ export default {
 
 export const DynamicAvatar = () => <Avatar src={card1}
     alt={text('Alternate text', 'Avatar')}
-    variant={select('Variant', ['circle', 'rounded', 'square'], 'circle', 'Select')}
+    variant={select('Variant', ['circle', 'rounded', 'square'], 'rounded', 'Select')}
     size={select('Display', ['small', 'display', 'large'], 'small', 'Select')}
     aria-label="one">{text('Label', 'O')}</Avatar>
 

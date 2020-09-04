@@ -13,21 +13,8 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
+    paddingTop: '56.25%',
+  }
 }));
 
 export default function CardHeaderHook(props) {
@@ -37,7 +24,7 @@ export default function CardHeaderHook(props) {
     avatar={
       <Avatar src={props.avatarImg} aria-label="recipe" className={classes.avatar}>
         
-      </Avatar>
+      </Avatar> 
     }
     action={
       <IconButton aria-label="settings">
@@ -45,7 +32,7 @@ export default function CardHeaderHook(props) {
       </IconButton>
     }
     title={
-      <Typography color="inherit" variant="subtitle1">{props.title}</Typography>
+      <Typography  variant="body1">{props.title}</Typography>
     }
     subheader={props.subheader}
   />
