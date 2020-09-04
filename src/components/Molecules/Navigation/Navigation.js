@@ -1,5 +1,6 @@
 import React from 'react'
-import Link from '../../Atoms/Link/Link'
+// import Link from '../../Atoms/Link/Link'
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledNav = styled.nav`
@@ -39,10 +40,10 @@ function Navigation() {
         <div>
             <StyledNav>
                 <ul>
-                    <Link className="link"  href="dashboard">Profile</Link>
-                    <Link className="link"  href="claps">Claps</Link>
-                    <Link className="link"  href="highlights">Highlights</Link>
-                    <Link className="link"  href="responses">Responses</Link>
+                    <Link className="link"  to="/dashboard">Profile</Link>
+                    <Link className="link"  to="/claps">Claps</Link>
+                    <Link className="link"  to="/highlights">Highlights</Link>
+                    <Link className="link"  to="/responses">Responses</Link>
                 </ul>
             </StyledNav>
         </div>

@@ -10,9 +10,10 @@ import Typography from '../../Atoms/Typography/Typography';
 import Icon from '../../Atoms/Icon/Icon'
 import { red } from '@material-ui/core/colors';
 import styled from 'styled-components'
+import Button from '../../Atoms/Button/Button'
 
 const StyledTypo = styled.div`
-  margin-left:250px;
+  margin-left:400px;
 `;
 
 
@@ -47,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const handleClick=()=>{
+  window.location.href="/blogdetail"
+}
+
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -54,7 +59,7 @@ export default function RecipeReviewCard(props) {
 
   return (
     <Card className={classes.root}>
-    
+
       <CardHeader
         avatarImg={props.cardImage}
         title={props.cardHeaderTitle}
@@ -75,6 +80,7 @@ export default function RecipeReviewCard(props) {
 
         <Typography variant={props.cardContentVariant} color={props.cardContentColor} component="p">
           {props.cardContent}
+            <Button onClick={handleClick} size="small">Learn More...</Button>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

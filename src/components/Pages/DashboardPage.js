@@ -9,29 +9,44 @@ function DashboardPage() {
 
 
     useEffect(() => {
-        fetch(
-            `http://localhost:3000/mockApi`,
-            {
-                method: "GET"
-            }
-        )
-            .then(res => res.json())
-            .then(response => {
-                console.log(JSON.stringify(response))
-                setBlogs(response.data)
+        fetchDashboardData().then((blogPostData) => {
+            // console.log(blogPostData)
+            setBlogs(blogPostData.data);
 
-            })
-            .catch(error => console.log(error));
+        }).catch(()=>{console.error("Error while fetching the data !")})
+
+        // fetch(
+        //     `http://localhost:3000/mockApi`,
+        //     {
+        //         method: "GET"
+        //     }
+        // )
+        //     .then(res => res.json())
+        //     .then(response => {
+        //         console.log(JSON.stringify(response))
+        //         setBlogs(response.data)
+
+        //     })
+        //     .catch(error => console.log(error));
     }, []);
 
+    const fetchDashboardData = async () => {
+        const data = await fetch(`http://localhost:3000/mockApi`);
+        const blogPostData = await data.json();
+        return blogPostData;
 
+    }
+    const handleCardClick = () => {
+        alert("hi")
+    }
     return (
         <React.Fragment>
-           
+
             <BlogPostLayout>
-                {
+                {blogs.length > 0 ?
                     blogs.map((blog, index) =>
                         <Card
+                            onClick={handleCardClick}
                             key={blog.id}
                             cardHeaderTitle={blog.title}
                             subHeader={blog.subHeader}
@@ -48,7 +63,7 @@ function DashboardPage() {
 
                         />
                     )
-                }
+                    : "No Blogs from this author !"}
             </BlogPostLayout>
         </React.Fragment>
     )
