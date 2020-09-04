@@ -1,7 +1,7 @@
 import React from 'react'
 import IconButton from "./IconButton"
 import Icon from '../Icon/Icon';
-import { select, text} from '@storybook/addon-knobs';
+import { select} from '@storybook/addon-knobs';
 
 export default {
     title: 'Atoms/IconButton',

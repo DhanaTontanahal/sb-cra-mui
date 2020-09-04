@@ -10,8 +10,8 @@ import Typography from '../../Atoms/Typography/Typography';
 import Icon from '../../Atoms/Icon/Icon'
 import { red } from '@material-ui/core/colors';
 import styled from 'styled-components'
-import Button from '../../Atoms/Button/Button'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';//changes this / uncomment this while using main app
+import Link from '../../Atoms/Link/Link' 
 
 const StyledTypo = styled.div`
   margin-left:400px;
@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 600,
     marginBottom: 50,
     marginLeft: '30%',
-    // backgroundColor:'#F0F8FF',
     backgroundColor: '#FFFFFF',
     boxShadow: '0.5px 0.5px black',
     opacity: 10
@@ -54,8 +53,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
 
   return (
     <Card className={classes.root}>
