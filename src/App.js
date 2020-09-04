@@ -26,7 +26,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={DashboardPage} />
           <Route path="/dashboard" component={DashboardPage} />
-          <Route path="/blogdetail" component={BlogDetailPage} />
+          <Route path="/blogdetail/:id" component={BlogDetailPage} />
           <Route path="/claps" component={ClapsPage} />
           <Route path="/highlights" component={HighlightsPage} />
           <Route path="/responses" component={ResponsesPage} />

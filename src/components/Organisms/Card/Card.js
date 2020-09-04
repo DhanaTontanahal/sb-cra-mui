@@ -11,12 +11,15 @@ import Icon from '../../Atoms/Icon/Icon'
 import { red } from '@material-ui/core/colors';
 import styled from 'styled-components'
 import Button from '../../Atoms/Button/Button'
+import { Link } from 'react-router-dom';
 
 const StyledTypo = styled.div`
   margin-left:400px;
 `;
 
-
+const StyledLink = styled(Link)`
+  margin-left:490px;
+`;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,9 +51,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const handleClick=()=>{
-  window.location.href="/blogdetail"
-}
 
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
@@ -78,10 +78,10 @@ export default function RecipeReviewCard(props) {
           {props.cardContentHeading}
         </Typography>
 
-        <Typography variant={props.cardContentVariant} color={props.cardContentColor} component="p">
+        <Typography noWrap={true} variant={props.cardContentVariant} color={props.cardContentColor} component="p">
           {props.cardContent}
-            <Button onClick={handleClick} size="small">Learn More...</Button>
         </Typography>
+        <StyledLink to={`blogdetail/${props.id}`}>More</StyledLink>
       </CardContent>
       <CardActions disableSpacing>
 
