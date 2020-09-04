@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from '../Organisms/Card/Card'
 import BlogPostLayout from '../Templates/BlogPostLayout'
+import { Typography } from "@material-ui/core";
 
 function DashboardPage() {
 
@@ -26,6 +27,7 @@ function DashboardPage() {
 
     return (
         <React.Fragment>
+           
             <BlogPostLayout>
                 {
                     blogs.map((blog, index) =>

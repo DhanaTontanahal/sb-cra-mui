@@ -12,7 +12,7 @@ import { red } from '@material-ui/core/colors';
 import styled from 'styled-components'
 
 const StyledTypo = styled.div`
-  margin-left:370px;
+  margin-left:250px;
 `;
 
 
@@ -20,7 +20,7 @@ const StyledTypo = styled.div`
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 600,
-    marginBottom: 12,
+    marginBottom: 50,
     marginLeft: '30%',
     // backgroundColor:'#F0F8FF',
     backgroundColor: '#FFFFFF',
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '50%', // 16:9
     opacity: 50
   },
   expand: {
@@ -51,9 +51,6 @@ export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <Card className={classes.root}>

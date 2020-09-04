@@ -1,11 +1,11 @@
 import React from 'react'
 
-function ClapsPage() {
+function HomePage() {
     return (
         <div>
-            ClapsPage
+            Home
         </div>
     )
 }
 
-export default ClapsPage
+export default HomePage

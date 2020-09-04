@@ -7,6 +7,9 @@ import Button from '../../Atoms/Button/Button'
 import IconButton from "../../Atoms/IconButton/IconButton"
 import Icon from "../../Atoms/Icon/Icon"
 import Avatar from '../../Atoms/Avatar/Avatar'
+// import Grid from '../../Organisms/Grid/Grid'
+// import Nav from '../../Molecules/Navigation/Navigation'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -38,6 +41,14 @@ export default function ButtonAppBar() {
           Medium Blog
        </Typography>
 
+       
+
+{/* 
+        <Grid>
+          <Nav />
+        </Grid> */}
+
+
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="search">
           <Icon iconType="search"></Icon>
         </IconButton>
@@ -53,7 +64,7 @@ export default function ButtonAppBar() {
           variant='circle'
           size='small'
           aria-label='U'
-          style={{marginLeft:'16px'}}
+          style={{ marginLeft: '16px' }}
         >
         </Avatar>
 
