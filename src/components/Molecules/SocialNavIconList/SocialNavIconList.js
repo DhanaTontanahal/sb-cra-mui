@@ -12,7 +12,6 @@ const StyledIconList = styled.div`
 
 `;
 export default function SocialNavIconList(props) {
-    const { children, ...rest } = props;
     return (
         <StyledIconList>
             <Icon iconType='twitterIcon'></Icon>
