@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Card from '../Organisms/Card/Card'
 import BlogPostLayout from '../Templates/BlogPostLayout'
+import {data} from '../../data'
 
 function DashboardPage() {
+   
     const [blogs, setBlogs] = useState([]);
+   
     useEffect(() => {
         fetchDashboardData();
+        setBlogs(data.data);
     }, []);
 
     const fetchDashboardData = async () => {
-        const data = await fetch(`http://localhost:3000/mockApi`);
-        const blogPostData = await data.json();
-        setBlogs(blogPostData.data);
+        // const data = await fetch(`http://localhost:3000/mockApi`);//uncomment for local
+        // const blogPostData = await data.json();
+        // setBlogs(blogPostData.data);//uncomment for local
+       
     }
 
     return (
