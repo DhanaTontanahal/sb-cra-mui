@@ -5,8 +5,10 @@ import { action } from '@storybook/addon-actions';
 
 export default {
     title: 'Atoms/Button',
-    component: Button
+    component: Button,
+    argTypes: { onClick: { action: 'clicked' } },
 }
+
 
 export const DynamicButton = () => <Button
     onClick={action('clicked', 'Submitted')}

@@ -38,7 +38,7 @@ function BlogDetailGridLayout(props) {
             console.log(props.blog[0])
             setBlogItem(props.blog[0])
         } else didMountRef.current = true
-    });
+    },[props.blog]);
 
     // console.log("Layout page");
     // console.log(blogItem);

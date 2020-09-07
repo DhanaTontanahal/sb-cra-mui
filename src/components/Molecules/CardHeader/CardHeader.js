@@ -31,7 +31,7 @@ export default function CardHeaderHook(props) {
       </IconButton>
     }
     title={
-      <Typography  variant="body1">{props.title}</Typography>
+      <Typography  noWrap={true} variant="body1">{props.title}</Typography>
     }
     subheader={props.subheader}
   />

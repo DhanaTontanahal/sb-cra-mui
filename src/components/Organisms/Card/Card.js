@@ -71,7 +71,7 @@ export default function RecipeReviewCard(props) {
       />
       <CardContent>
 
-        <Typography variant="h4" component="p">
+        <Typography noWrap={true} variant="h4" component="p">
           {props.cardContentHeading}
         </Typography>
 
