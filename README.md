@@ -1,9 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-
-#Demo Storybook : https://heuristic-kowalevski-b0e77e.netlify.app/
-#Demo App : https://lnd-dhana.web.app/
-
+#Demo: https://heuristic-kowalevski-b0e77e.netlify.app/
 ## Available Scripts
 
 In the project directory, you can run:

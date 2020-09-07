@@ -38,10 +38,7 @@ function BlogDetailGridLayout(props) {
             console.log(props.blog[0])
             setBlogItem(props.blog[0])
         } else didMountRef.current = true
-    });
-
-    // console.log("Layout page");
-    // console.log(blogItem);
+    },[props.blog]);
 
     return (
         <div className={classes.root}>
