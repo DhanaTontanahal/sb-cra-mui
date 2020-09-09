@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from '../Organisms/Card/Card'
 import BlogPostLayout from '../Templates/BlogPostLayout'
-// import { data } from '../../data'
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -16,8 +15,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function DashboardPage() {
+function DashboardPage({match}) {
 
+    console.log(match.params.email)
     const classes = useStyles();
     const {user} = useAuth0();
     
@@ -25,6 +25,7 @@ function DashboardPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        //just to delay the API call, not really required..
         setTimeout(() => {
             console.log(loading)
             getData();

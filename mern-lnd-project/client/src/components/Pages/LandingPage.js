@@ -15,9 +15,11 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
-//needs improvement 
+
 function LandingPage() {
     const classes = useStyles();
+    const tags = ['Future', 'Technology', 'Elemental', 'Health', 'Productivity', 'Science', 'Business', 'Work', 'Artificial Intelligence', 'NeuroScience', 'Food', 'Relationships',
+        'Design', 'Culture', 'CryptoCurrency', 'Programming', 'Life', 'Beauty', 'Solace', 'Computers'];
     return (
         <div className={classes.root}>
             <Grid container spacing={3}>
@@ -35,90 +37,14 @@ function LandingPage() {
 
                 </Grid>
 
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        Future
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        Technology
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        Elemental
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        Health
-                    </Paper>
-                </Grid>
 
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        Productivity
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        Science
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        Business
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Work</Paper>
-                </Grid>
-
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        Artificial Intelligence
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>
-                        NeuroScience
-                    </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Food</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Relationships</Paper>
-                </Grid>
-
-
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Design</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Culture</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>CryptoCurrency </Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Programming</Paper>
-                </Grid>
-
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Life</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Beauty</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Solace</Paper>
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>Computers</Paper>
-                </Grid>
-
+                {
+                    tags.map((tag) => {
+                        return <Grid item xs={3}>
+                            <Paper className={classes.paper}>{tag}</Paper>
+                        </Grid>
+                    })
+                }
 
 
                 <Grid item xs={12}>

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import styled from 'styled-components'
+import { useAuth0 } from "@auth0/auth0-react";
+import Typography from '../Atoms/Typography/Typography'
+import Card from '../Organisms/Card/Card'
 
 const StyledDiv = styled.div`
 .app {
     padding: 10px;
   }
-  
-  
   form {
     width: 50%;
   }
@@ -47,41 +47,54 @@ const StyledDiv = styled.div`
   }
 
 `;
-class NewBlogPage extends React.Component {
-
-    state = {
-        title: '',
-        body: '',
-        imageUrl: '',
-        posts: []
-    };
-
-    componentDidMount = () => {
-        this.getBlogPost();
-    };
 
 
-    getBlogPost = () => {
+function NewBlogPage() {
+
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [posts, setPosts] = useState([]);
+    const [myPosts, setMyPosts] = useState([]);
+    const [currentUser, setCurrentUser] = useState({});
+    const { user } = useAuth0();
+
+
+    useEffect(() => {
+        setTimeout(() => {
+            getBlogPost();
+            setCurrentUser(user);
+        }, 100);
+
+    }, []);
+
+    const getBlogPost = () => {
+
         axios.get('/blogApi')
             .then((response) => {
                 const data = response.data;
-                this.setState({ posts: data });
-                console.log('Data has been received!!');
+                setPosts(data)
             })
             .catch(() => {
                 alert('Error retrieving data!!!');
             });
     }
 
-    handleChange = ({ target }) => {
-        console.log(target)
+    const handleChange = ({ target }) => {
         const { name, value } = target;
-        console.log(name, value)
-        this.setState({ [name]: value });
+        if (name === 'title') {
+            setTitle(value)
+        }
+        else if (name === 'body') {
+            setBody(value);
+        }
+        else if (name === 'imageUrl') {
+            setImageUrl(value);
+        }
     };
 
 
-    submit = (event) => {
+    const submit = (event) => {
         event.preventDefault();
 
         const getRndInteger = (min, max) => {
@@ -96,27 +109,28 @@ class NewBlogPage extends React.Component {
 
         const getDate = (min, max) => {
             var d = new Date();
-            return  d.getDate();
+            return d.getDate();
         }
 
         const getYear = (min, max) => {
             var d = new Date();
             return d.getFullYear();
         }
-        
-      
+
+
         const payload = {
             postId: getRndInteger(100, 9999),
-            title: this.state.title,
-            body: this.state.body,
-            cardImage: this.state.imageUrl,
-            subHeader: getMonth()+" "+getDate() + ","+ getYear() + " . "+ getRndInteger(1, 10) + " min read",
-            avatarText: "D",
+            postedBy: currentUser.email,
+            title: title,
+            body: body,
+            cardImage: imageUrl,
+            subHeader: getMonth() + " " + getDate() + "," + getYear() + " . " + getRndInteger(1, 10) + " min read",
+            avatarText: currentUser.email.substring(0, 1),
             responseCount: getRndInteger(3, 199),
             clapCount: getRndInteger(9, 100),
             cardContentVariant: "body2",
-            cardContentHeading: this.state.title,
-            content: this.state.body,
+            cardContentHeading: title,
+            content: body,
             color: "textSecondary"
         };
 
@@ -127,87 +141,109 @@ class NewBlogPage extends React.Component {
             data: payload
         })
             .then(() => {
-                console.log('Data has been sent to the server');
-                this.resetUserInputs();
-                this.getBlogPost();
+                resetUserInputs();
+                getBlogPost();
             })
             .catch(() => {
                 console.log('Internal server error');
             });;
     };
 
-    resetUserInputs = () => {
-        this.setState({
-            title: '',
-            body: '',
-            imageUrl:''
-        });
+    const resetUserInputs = () => {
+
+        setTitle('');
+        setBody('');
+        setImageUrl('');
     };
 
-    displayBlogPost = (posts) => {
+    const displayBlogPost = (posts) => {
 
         if (!posts.length) return null;
 
 
-        return posts.map((post, index) => (
-            <div key={index} className="blog-post__display">
-                <h3>{post.title}</h3>
-                <p>{post.body}</p>
-            </div>
+        return posts.map((blog, index) => (
+            <Card
+                key={blog.postId}
+                postId={blog.postId}
+                cardHeaderTitle={blog.title}
+                subHeader={blog.subHeader}
+                cardHeaderAvatarString={blog.avatarText}
+                responseCount={blog.responseCount}
+                cardMedia={blog.cardImage}
+                clapCount={blog.clapCount}
+                cardContentVariant={blog.cardContentVariant}
+                cardContentHeading={blog.cardContentHeading}
+                cardContent={blog.content}
+                cardContentColor={blog.color}
+            />
+            // <div key={index} className="blog-post__display">
+            //     <h3>{post.title}</h3>
+            //     <p>{post.body}</p>
+            // </div>
         ));
     };
 
-    render() {
 
-        console.log('State: ', this.state);
+    return (
+        <StyledDiv>
+            <Typography
+                gutterBottom={true}
+                color='initial'
+                variant='h3'
+                align='center'
+                display='block'
+            >Post your own thoughts here
+            </Typography>
 
-        //JSX
-        return (
-            <StyledDiv>
-                <h2>Welcome to the best app ever</h2>
-                <form onSubmit={this.submit}>
-                    <div className="form-input">
-                        <input
-                            type="text"
-                            name="title"
-                            placeholder="Title"
-                            value={this.state.title}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className="form-input">
-                        <textarea
-                            placeholder="body"
-                            name="body"
-                            cols="30"
-                            rows="10"
-                            value={this.state.body}
-                            onChange={this.handleChange}
-                        >
-
-                        </textarea>
-                    </div>
-                    <div className="form-input">
-                        <input
-                            type="text"
-                            name="imageUrl"
-                            placeholder="Image URL"
-                            value={this.state.imageUrl}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-
-
-                    <button>Post</button>
-                </form>
-
-                <div className="blog-">
-                    {this.displayBlogPost(this.state.posts)}
+            <form onSubmit={submit}>
+                <div className="form-input">
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        value={title}
+                        onChange={handleChange}
+                    />
                 </div>
-            </StyledDiv>
-        );
-    }
+                <div className="form-input">
+                    <textarea
+                        placeholder="body"
+                        name="body"
+                        cols="30"
+                        rows="10"
+                        value={body}
+                        onChange={handleChange}
+                    >
+
+                    </textarea>
+                </div>
+                <div className="form-input">
+                    <input
+                        type="text"
+                        name="imageUrl"
+                        placeholder="Image URL"
+                        value={imageUrl}
+                        onChange={handleChange}
+                    />
+                </div>
+
+
+                <button>Post</button>
+            </form>
+
+            <div className="blog-">
+                <Typography
+                    gutterBottom={true}
+                    color='initial'
+                    variant='h5'
+                    align='center'
+                    display='block'
+                >My Posts
+            </Typography>
+                {displayBlogPost(posts.filter(p => p.postedBy === user.email))}
+            </div>
+        </StyledDiv>
+    );
 }
 
-
-export default NewBlogPage;
+export default NewBlogPage

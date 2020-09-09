@@ -12,16 +12,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const { isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
   return (
     <React.Fragment>
       <Router>
-        <Header isAuthenticated={isAuthenticated} />
+        <Header isAuthenticated={isAuthenticated}  currentUserName={user}/>
         {
           !isAuthenticated ?
             <LandingPage /> :
             <Switch>
               <Route path="/" exact component={DashboardPage} />
               <Route path="/dashboard" component={DashboardPage} />
+              <Route path="/dashboard/:email" component={DashboardPage} />
               <Route path="/blogdetail/:postId" component={BlogDetailPage} />
               <Route path="/claps" component={ClapsPage} />
               <Route path="/highlights" component={HighlightsPage} />
