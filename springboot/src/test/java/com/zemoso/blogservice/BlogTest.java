@@ -3,6 +3,7 @@ package com.zemoso.blogservice;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.sql.Date;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,7 +19,7 @@ import com.zemoso.blogservice.service.BlogService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Test {
+public class BlogTest {
 
 	@Autowired
 	private BlogService service;
@@ -29,14 +30,14 @@ public class Test {
 	@org.junit.Test
 	public void getAllBlogsest() {
 		when(repository.findAll()).thenReturn(Stream.of(
-				new Blog((long) 1002, "title1", "blogcontent1", "Sep 10 2020", "post desc1", "imageUrl", "2 min", 0, 0,
-						1050),
-				new Blog((long) 1003, "title1", "blogcontent1", "Sep 10 2020", "post desc1", "imageUrl", "2 min", 0, 0,
-						1050))
+				new Blog( 1002l,  "title",  "content", new Date (0), "postedBy", "String postImgUrl",
+						"String readTime", 100l ,  0, new Date (0)))
 				.collect(Collectors.toList()));
-		assertEquals(2, service.getAllBlogs().size());
+		assertEquals(1, service.getAllBlogs().size());
 	}
 
+	
+	
 
 
 }

@@ -8,4 +8,5 @@ import com.zemoso.blogservice.model.Blog;
 @Repository
 public interface BlogReposit extends JpaRepository<Blog,Long>{
 
+
 }

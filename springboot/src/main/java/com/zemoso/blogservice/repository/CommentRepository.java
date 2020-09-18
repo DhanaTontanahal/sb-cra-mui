@@ -11,6 +11,9 @@ import com.zemoso.blogservice.model.Comment;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-	@Query("SELECT c FROM Comment c WHERE c.postId = ?1")
-	List<Comment> getCommentsByPostId(long postId);
+	@Query("SELECT c FROM Comment c WHERE c.blogId = ?1")
+	List<Comment> getCommentsByBlogId(long blogId);
+	
+	
+	
 }
