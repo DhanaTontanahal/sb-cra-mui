@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.zemoso.blogservice.exception.ResourceNotFoundException;
 import com.zemoso.blogservice.model.Comment;
@@ -30,12 +28,12 @@ public class CommentService {
 	}
 
 	
-	public List<Comment> getCommentsByPostId(long postId){
-		return this.commentRepository.getCommentsByPostId(postId);
+	public List<Comment> getCommentsByPostId(long blogId){
+		return this.commentRepository.getCommentsByBlogId(blogId);
 		
 	}
 	
-	public Comment createBlog(Comment comment) {
+	public Comment createComment(Comment comment) {
 		return this.commentRepository.save(comment);
 	}
 	

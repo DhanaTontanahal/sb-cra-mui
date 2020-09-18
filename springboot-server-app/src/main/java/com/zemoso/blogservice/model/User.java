@@ -1,65 +1,83 @@
 package com.zemoso.blogservice.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name="Users")
+@Table(name = "bloguser")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long uId;
-	
-	@Column(name="first_name")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
+
+	@Column(name = "first_name")
+	@NotNull
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
+	@NotNull
 	private String lastName;
 
-	@Column(name="avatar_link")
-	private String avatarLink;
-	
-	@Column(name="about")
+	@Column(name = "about")
 	private String about;
-	
-	@Column(name="twitter_url")
-	private String twitterUrl;
-	
-	@Column(name="following_count")
-	private int followingCount;
-	
-	@Column(name="followers_count")
-	private int followersCount;
 
-	public User(Long uId, String firstName, String lastName, String avatarLink, String about, String twitterUrl,
-			int followingCount, int followersCount) {
-		super();
-		this.uId = uId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.avatarLink = avatarLink;
-		this.about = about;
-		this.twitterUrl = twitterUrl;
-		this.followingCount = followingCount;
-		this.followersCount = followersCount;
-	}
+	@Column(name = "twitter_url")
+	private String twitterUrl;
+
+	@Column(name = "created_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+	private Date createdDate;
+
+	@Column(name = "updated_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+	private Date updatedDate;
+
+	@Column(name = "is_active")
+	private boolean isActive;
+
+	@Column(name = "avatar_link")
+	private String avatarLink;
+
+	@Column(name = "user_name")
+	@NotNull
+	private String userName;
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getuId() {
-		return uId;
+	public User(Long userId, @NotNull String firstName, @NotNull String lastName, String about, String twitterUrl,
+			Date createdDate, Date updatedDate, boolean isActive, String avatarLink, @NotNull String userName) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.about = about;
+		this.twitterUrl = twitterUrl;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.isActive = isActive;
+		this.avatarLink = avatarLink;
+		this.userName = userName;
 	}
 
-	public void setuId(Long uId) {
-		this.uId = uId;
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getFirstName() {
@@ -78,14 +96,6 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getAvatarLink() {
-		return avatarLink;
-	}
-
-	public void setAvatarLink(String avatarLink) {
-		this.avatarLink = avatarLink;
-	}
-
 	public String getAbout() {
 		return about;
 	}
@@ -102,20 +112,51 @@ public class User {
 		this.twitterUrl = twitterUrl;
 	}
 
-	public int getFollowingCount() {
-		return followingCount;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setFollowingCount(int followingCount) {
-		this.followingCount = followingCount;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public int getFollowersCount() {
-		return followersCount;
+	public Date getUpdatedDate() {
+		return updatedDate;
 	}
 
-	public void setFollowersCount(int followersCount) {
-		this.followersCount = followersCount;
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public String getAvatarLink() {
+		return avatarLink;
+	}
+
+	public void setAvatarLink(String avatarLink) {
+		this.avatarLink = avatarLink;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", about=" + about
+				+ ", twitterUrl=" + twitterUrl + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate
+				+ ", isActive=" + isActive + ", avatarLink=" + avatarLink + ", userName=" + userName + "]";
 	}
 
 	@Override
@@ -124,12 +165,14 @@ public class User {
 		int result = 1;
 		result = prime * result + ((about == null) ? 0 : about.hashCode());
 		result = prime * result + ((avatarLink == null) ? 0 : avatarLink.hashCode());
+		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + followersCount;
-		result = prime * result + followingCount;
+		result = prime * result + (isActive ? 1231 : 1237);
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((twitterUrl == null) ? 0 : twitterUrl.hashCode());
-		result = prime * result + ((uId == null) ? 0 : uId.hashCode());
+		result = prime * result + ((updatedDate == null) ? 0 : updatedDate.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
 
@@ -152,14 +195,17 @@ public class User {
 				return false;
 		} else if (!avatarLink.equals(other.avatarLink))
 			return false;
+		if (createdDate == null) {
+			if (other.createdDate != null)
+				return false;
+		} else if (!createdDate.equals(other.createdDate))
+			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (followersCount != other.followersCount)
-			return false;
-		if (followingCount != other.followingCount)
+		if (isActive != other.isActive)
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -171,21 +217,25 @@ public class User {
 				return false;
 		} else if (!twitterUrl.equals(other.twitterUrl))
 			return false;
-		if (uId == null) {
-			if (other.uId != null)
+		if (updatedDate == null) {
+			if (other.updatedDate != null)
 				return false;
-		} else if (!uId.equals(other.uId))
+		} else if (!updatedDate.equals(other.updatedDate))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "User [uId=" + uId + ", firstName=" + firstName + ", lastName=" + lastName + ", avatarLink=" + avatarLink
-				+ ", about=" + about + ", twitterUrl=" + twitterUrl + ", followingCount=" + followingCount
-				+ ", followersCount=" + followersCount + "]";
-	}
 	
 	
 
+	
 }

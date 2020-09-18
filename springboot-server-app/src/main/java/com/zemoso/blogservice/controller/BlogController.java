@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +21,18 @@ import com.zemoso.blogservice.service.BlogService;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BlogController {
 
 	@Autowired
 	private BlogService blogService;
+	
+	@GetMapping("test-blog")
+	public Blog getDummyBlog() {
+		
+		return new Blog(1001l, "blog title", "blog content", null,"dhana", "http://myimages.thisone.com/cats/1",
+				"2 min", 122l, 0 , null);
+	}
 	
 	@GetMapping("blogs")
 	public List<Blog> getAllBlogs() {
@@ -37,6 +46,7 @@ public class BlogController {
 
 	@PostMapping("blogs")
 	public Blog createBlog(@RequestBody Blog blog) {
+		
 		return blogService.createBlog(blog);
 	}
 	
@@ -44,8 +54,18 @@ public class BlogController {
 	public ResponseEntity<Blog> updateBlog(@PathVariable(value="id") Long blogId,
 			 @RequestBody Blog blog) throws ResourceNotFoundException{
 		Blog blogFromDB = blogService.getBlogById(blogId);
+		
+		blogFromDB.setBlogId(blog.getBlogId());
 		blogFromDB.setTitle(blog.getTitle());
 		blogFromDB.setContent(blog.getContent());
+		blogFromDB.setPostedDate(blog.getPostedDate());
+		blogFromDB.setPostImgUrl(blog.getPostImgUrl());
+		blogFromDB.setPostedBy(blog.getPostedBy());
+		blogFromDB.setReadTime(blog.getReadTime());
+		blogFromDB.setuId(blog.getuId());
+		blogFromDB.setClapsCount(blog.getClapsCount());
+		blogFromDB.setUpdatedDate(blog.getUpdatedDate());
+		
 		return ResponseEntity.ok(blogService.createBlog(blog));
 	}
 	
