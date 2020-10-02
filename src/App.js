@@ -1,37 +1,35 @@
 import React from "react";
 import Header from './components/Molecules/Header/AppHeader'
-import DashboardPage from './components/Pages/DashboardPage'
-import BlogDetailPage from './components/Pages/BlogDetailPage'
-import ClapsPage from './components/Pages/ClapsPage'
-import HighlightsPage from './components/Pages/HighlightsPage'
-import ResponsesPage from './components/Pages/ResponsesPage'
+import DashboardPage from './Pages/DashboardPage'
+import MyStoriesPage from './Pages/MyStoriesPage'
+import BlogDetailPage from './Pages/BlogDetailPage'
+import LandingPage from './Pages/LandingPage'
+import NewBlogPage from './Pages/NewBlogPage'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
+  const { isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
   return (
     <React.Fragment>
-      <Header />
       <Router>
-        {/* <Grid>
-          <Nav />
-        </Grid> */}
+        <Header isAuthenticated={isAuthenticated}  currentUserName={user}/>
+        {
+          !isAuthenticated ?
+            <LandingPage /> :
+            <Switch>
+              <Route path="/" exact component={DashboardPage} />
+              <Route path="/dashboard" exact component={DashboardPage} />
+              <Route path="/dashboard/:email" exact component={DashboardPage} />
+              <Route path="/blogdetail/:postId" exact component={BlogDetailPage} />
+              <Route path="/new" exact component={NewBlogPage} />
+              <Route path="/mystories"  exact component={MyStoriesPage} />
+            </Switch>
+        }
 
-        {/* <Typography style={{ display: 'block', padding: '5px', zIndex: '10' }} align="center" display="initial" gutterBottom={true}>
-          {(window.location.href.substring(window.location.href.lastIndexOf('/') + 1, window.location.href.length)).toUpperCase()}
-        </Typography> */}
-        <Switch>
-          <Route path="/" exact component={DashboardPage} />
-          <Route path="/dashboard" component={DashboardPage} />
-          <Route path="/blogdetail/:id" component={BlogDetailPage} />
-          <Route path="/claps" component={ClapsPage} />
-          <Route path="/highlights" component={HighlightsPage} />
-          <Route path="/responses" component={ResponsesPage} />
-        </Switch>
       </Router>
     </React.Fragment>
-
-
-
   );
 }
 

@@ -9,7 +9,6 @@ export default {
     argTypes: { onClick: { action: 'clicked' } },
 }
 
-
 export const DynamicButton = () => <Button
     onClick={action('clicked', 'Submitted')}
     size={select('Size', ['small', 'medium', 'large'], 'medium', 'Select')}

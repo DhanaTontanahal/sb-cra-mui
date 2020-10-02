@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.0.0",
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
@@ -11,6 +12,7 @@
     "@storybook/addon-knobs": "^6.0.19",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.20.0",
     "emotion-theming": "^10.0.27",
     "fs-extra": "^9.0.1",
     "react": "^16.13.1",

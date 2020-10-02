@@ -1,21 +1,19 @@
 
 import { createMuiTheme } from '@material-ui/core/styles';
-import { green, blue,blueGrey } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
     palette: {
-      primary: blue,
-      secondary: green,
-      default:blueGrey[900],
+   
     },
-    typography:{
-      fontFamily:'Arial',
-      "h4":{
-        fontWeight:'bold',
-        color:'black',
-        fontSize:'12'
-      }
-    }
+    typography: {
+      "fontFamily": `"Roboto", "Helvetica", "Arial", sans-serif`,
+      "fontSize": 14,
+      "fontWeightLight": 300,
+      "fontWeightRegular": 400,
+      "fontWeightMedium": 500
+     }
+
+
   });
 
   export default theme;

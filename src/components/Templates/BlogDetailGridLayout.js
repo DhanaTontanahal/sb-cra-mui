@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import BlogDetailCard from './BlogDetailCardLayout';
-import SocialNavIconList from '../Molecules/SocialNavIconList/SocialNavIconList'
-import CardHeader from '../Molecules/CardHeader/CardHeader'
 import Typography from "../Atoms/Typography/Typography";
-import Icon from '../Atoms/Icon/Icon'
-import IconButton from '../Atoms/IconButton/IconButton'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+    },
+    root1: {
+        width: '100%',
+        maxWidth: '36ch',
+        backgroundColor: theme.palette.background.paper,
+        marginLeft: '35%'
     },
     paper: {
         padding: theme.spacing(2),
@@ -27,104 +29,39 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 function BlogDetailGridLayout(props) {
 
     const classes = useStyles();
     const didMountRef = useRef(false)
     const [blogItem, setBlogItem] = useState([]);
 
+    const hndlComnttIpChnge = (e) => {
+        props.hndlComnttIpChnge(e)
+    }
+    
+    const postComment = () => {
+        props.postComment();
+    }
+
     useEffect(() => {
         if (didMountRef.current) {
-            console.log(props.blog[0])
-            setBlogItem(props.blog[0])
+            setBlogItem(props.blog[0]);
+          
         } else didMountRef.current = true
-    },[props.blog]);
+    }, [props.blog]);
 
-    // console.log("Layout page");
-    // console.log(blogItem);
 
+    
     return (
-        <div className={classes.root}>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper1}>
-                        <Typography  variant="h5" component="h2">
-                            {blogItem.title}
-                        </Typography>
-                    </Paper>
-                </Grid>
-
-                <Grid item xs={6} sm={3}>
-
-                </Grid>
-
-                <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper2}>
-                        <CardHeader
-                            title='Dan Abromav'
-                            subheader='September 1, 2020 . 2 min read'
-                            avatarString='F'
-                            iconType='moreVert'>
-                        </CardHeader>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper}>
-                        <SocialNavIconList />
-                    </Paper>
-                </Grid>
-                <Grid item xs={6} sm={3}>
-
-                </Grid>
-
-
 
                 <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                        <BlogDetailCard blogItem={blogItem} />
-                    </Paper>
+                    <Typography className={classes.paper1} align="center" variant="h5" component="h2">
+                        {blogItem.title}
+                    </Typography>
+                    <BlogDetailCard postComment={postComment} hndlComnttIpChnge={hndlComnttIpChnge} comments={props.comments} userName={props.userName} blogItem={blogItem} />
                 </Grid>
-
-                <Grid item xs={6} sm={3}>
-
-                </Grid>
-                <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper}>
-                        <Typography gutterBottom variant="body1" component="h2">
-                            React Javascript
-                        </Typography>
-
-                    </Paper>
-                </Grid>
-
-                <Grid item xs={6} sm={3}>
-
-                </Grid>
-                <Grid item xs={6} sm={3}>
-
-                </Grid>
-
-
-                <Grid item xs={6} sm={3}>
-
-                </Grid>
-                <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper}>
-                        <IconButton aria-label="clapsIcon">
-                            <Icon iconType="clapsIcon"></Icon> {blogItem.clapCount}K
-                        </IconButton>
-                           
-                    </Paper>
-                </Grid>
-                <Grid item xs={6} sm={3}>
-                    <Paper className={classes.paper}>  <SocialNavIconList /></Paper>
-                </Grid>
-                <Grid item xs={6} sm={3}>
-
-                </Grid>
-
-            </Grid>
-        </div>
+                    
     );
 }
 

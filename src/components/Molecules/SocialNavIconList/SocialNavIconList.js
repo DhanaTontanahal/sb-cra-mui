@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import Icon from '../../Atoms/Icon/Icon';
 import styled from 'styled-components'
+import IconButton from '../../Atoms/IconButton/IconButton'
 
 const StyledIconList = styled.div`
 
@@ -12,11 +13,22 @@ const StyledIconList = styled.div`
 
 `;
 export default function SocialNavIconList(props) {
+    const didMountRef = useRef(false)
+    const [twitterUrl, setTwitterUrl] = useState('');
+
+    useEffect(() => {
+        if (didMountRef.current) {
+            setTwitterUrl(props.twitterUrl)
+        } else didMountRef.current = true
+    }, [props]);
+
     return (
         <StyledIconList>
-            <Icon iconType='twitterIcon'></Icon>
-            <Icon iconType='facebookIcon'></Icon>
-            <Icon iconType='cardSaveIcon'></Icon>
-            <Icon iconType='horizontalDotsIcon'></Icon>
+            <IconButton href={twitterUrl}>{<Icon iconType='twitterIcon'></Icon>}</IconButton>
+            <IconButton href={twitterUrl}>{<Icon iconType='facebookIcon'></Icon>}</IconButton>
+            <IconButton href={twitterUrl}>{<Icon iconType='cardSaveIcon'></Icon>}</IconButton>
+            <IconButton href={twitterUrl}>{<Icon iconType='horizontalDotsIcon'></Icon>}</IconButton>
+
         </StyledIconList>)
 }
+

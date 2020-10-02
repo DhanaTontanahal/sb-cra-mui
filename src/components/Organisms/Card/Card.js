@@ -10,8 +10,8 @@ import Typography from '../../Atoms/Typography/Typography';
 import Icon from '../../Atoms/Icon/Icon'
 import { red } from '@material-ui/core/colors';
 import styled from 'styled-components'
-// import { Link } from 'react-router-dom';//changes this / uncomment this while using main app
-import Link from '../../Atoms/Link/Link' 
+import { Link } from 'react-router-dom';//changes this / uncomment this while using main app
+// import Link from '../../Atoms/Link/Link' 
 
 const StyledTypo = styled.div`
   margin-left:400px;
@@ -22,6 +22,13 @@ const StyledLink = styled(Link)`
 `;
 
 const useStyles = makeStyles((theme) => ({
+  root1: {
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline1: {
+
+  },
+
   root: {
     maxWidth: 600,
     marginBottom: 50,
@@ -51,11 +58,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function RecipeReviewCard(props) {
+export default function BlogPostCard(props) {
   const classes = useStyles();
 
+  // console.log(props);
+
   return (
-    <Card className={classes.root}>
+    <Card key={props.title} className={classes.root}>
 
       <CardHeader
         avatarImg={props.cardImage}
@@ -78,23 +87,23 @@ export default function RecipeReviewCard(props) {
         <Typography noWrap={true} variant={props.cardContentVariant} color={props.cardContentColor} component="p">
           {props.cardContent}
         </Typography>
-        <StyledLink to={`blogdetail/${props.id}`}>More</StyledLink>
+        <StyledLink to={`blogdetail/${props.postId}`}>More</StyledLink>
       </CardContent>
       <CardActions disableSpacing>
 
-        <IconButton aria-label="clapsIcon">
+        <IconButton  aria-label="clapsIcon">
           <Icon iconType="clapsIcon"></Icon>
         </IconButton>
         <Typography variant="subtitle2" align="inherit">
-          {props.clapCount}K
+          {props.clapCount}
         </Typography>
 
 
-        <StyledTypo>
+        {/* <StyledTypo>
           <Typography variant="subtitle2" align="right">
             {props.responseCount} responses
-        </Typography>
-        </StyledTypo>
+          </Typography>
+        </StyledTypo> */}
 
       </CardActions>
 
